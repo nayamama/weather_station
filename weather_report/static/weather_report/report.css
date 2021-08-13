@@ -1,0 +1,11 @@
+.table {
+    border-bottom: 0 !important;
+}
+
+.table th, .table td {
+    border: 0 !important;
+}
+
+.card-title {
+    color: dimgray;
+}

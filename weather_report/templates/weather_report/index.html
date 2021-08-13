@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block page_title %}
     Weather Center
+{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'weather_report/report.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -9,7 +14,7 @@
         <div class="col-md-6">
             <div class="form">
                 <i class="fa fa-search"></i>
-                <input type="text" class="form-control form-input" placeholder="Search City...">
+                <input type="text" name="city" class="form-control form-input" placeholder="Search City...">
             </div>
         </div>
 
@@ -17,12 +22,38 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Harbin</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                        <h5 class="card-title"><strong>Harbin</strong></h5>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Weather:</th>
+                                <td>{{ harbin_report.weather }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Temperature:</th>
+                                <td>{{ harbin_report.temp }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Feels like:</th>
+                                <td>{{ harbin_report.feels_like }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Wind:</th>
+                                <td>{{ harbin_report.wind }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunrise:</th>
+                                <td>{{ harbin_report.sun_rise_local }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunset:</th>
+                                <td>{{ harbin_report.sun_set_local }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <div id="china_clock"></div>
                     </div>
                 </div>
             </div>
@@ -30,10 +61,37 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">Montreal</h5>
-                        <p class="card-text">This is a short card.</p>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Weather:</th>
+                                <td>{{ montreal_report.weather }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Temperature:</th>
+                                <td>{{ montreal_report.temp }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Feels like:</th>
+                                <td>{{ montreal_report.feels_like }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Wind:</th>
+                                <td>{{ montreal_report.wind }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunrise:</th>
+                                <td>{{ montreal_report.sun_rise_local }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunset:</th>
+                                <td>{{ montreal_report.sun_set_local }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <div id="east_clock"></div>
                     </div>
                 </div>
             </div>
@@ -41,16 +99,44 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">San Diego</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content.</p>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Weather:</th>
+                                <td>{{ sandiego_report.weather }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Temperature:</th>
+                                <td>{{ sandiego_report.temp }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Feels like:</th>
+                                <td>{{ sandiego_report.feels_like }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Wind:</th>
+                                <td>{{ sandiego_report.wind }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunrise:</th>
+                                <td>{{ sandiego_report.sun_rise_local }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunset:</th>
+                                <td>{{ sandiego_report.sun_set_local }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <div id="west_clock"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
 
-
+{% block page_js %}
+    <script src="{% static 'weather_report/report.js' %}"></script>
 {% endblock %}
