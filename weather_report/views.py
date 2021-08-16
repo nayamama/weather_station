@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import pytz
 
-from .weather import get_current_city_weather_data
+from .weather import get_current_city_weather_data, get_five_days_forecast
 
 tz_china = pytz.timezone('Asia/Shanghai')
 tz_east = pytz.timezone('America/Toronto')
@@ -20,3 +20,10 @@ def index(request):
                       {'harbin_report': harbin_report,
                        'montreal_report': montreal_report,
                        'sandiego_report': sandiego_report})
+
+
+def detail(request, city):
+    report = get_five_days_forecast(city)
+    city = city.title()
+
+    return render(request, 'weather_report/detail.html', {'report': report, 'city': city})
