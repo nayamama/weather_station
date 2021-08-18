@@ -12,17 +12,21 @@
 {% block content %}
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-6">
-            <div class="form">
-                <i class="fa fa-search"></i>
-                <input type="text" name="city" class="form-control form-input" placeholder="Search City...">
-            </div>
+            <form method="post" action="{% url 'weather_report:weather-detail' city=None %}">
+                {% csrf_token %}
+                <div class="form">
+                    <i class="fa fa-search"></i>
+                    <input type="text" name="city" class="form-control form-input" placeholder="Search City...">
+                </div>
+            </form>
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-5">
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title"><strong>Harbin</strong></h5>
+                        <h5 class="card-title"><a
+                                href="{% url 'weather_report:weather-detail' city='harbin' %}">Harbin</a></h5>
                         <table class="table">
                             <tbody>
                             <tr>
@@ -60,7 +64,8 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Montreal</h5>
+                        <h5 class="card-title"><a
+                                href="{% url 'weather_report:weather-detail' city='montreal' %}">Montreal</a></h5>
                         <table class="table">
                             <tbody>
                             <tr>
@@ -98,7 +103,8 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">San Diego</h5>
+                        <h5 class="card-title"><a
+                                href="{% url 'weather_report:weather-detail' city='san diego' %}">San Diego</a></h5>
                         <table class="table">
                             <tbody>
                             <tr>

@@ -15,27 +15,27 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}">
 
     {% block site_css %}
-        <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/style.css' %}"/>
     {% endblock %}
 
     {% block extra_head %}
-    {# Extra header stuff (scripts, styles, metadata, etc) #}
+        {# Extra header stuff (scripts, styles, metadata, etc) #}
     {% endblock %}
 </head>
 
 <body>
-    <nav class="navbar justify-content-center navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Weather Forecast </a>
-    </nav>
+<nav class="navbar justify-content-center navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'weather_report:home' %}">Weather Forecast </a>
+</nav>
 
-    <div class="container-fluid">
-        {% block content %}{% endblock %}
-    </div>
+<div class="container-fluid">
+    {% block content %}{% endblock %}
+</div>
 
 
-    {# Page javascript #}
-        {% autoescape off %}
-          {% block page_js %}
-          {% endblock %}
-        {% endautoescape %}
+{# Page javascript #}
+{% autoescape off %}
+    {% block page_js %}
+    {% endblock %}
+{% endautoescape %}
 </body>
