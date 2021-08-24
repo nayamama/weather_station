@@ -12,11 +12,16 @@
 {% block content %}
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-6">
-            <form method="post" action="{% url 'weather_report:weather-detail' city=None %}">
+
+            <form method="post" action="{% url 'weather_report:weather-detail' %}">
                 {% csrf_token %}
                 <div class="form">
                     <i class="fa fa-search"></i>
                     <input type="text" name="city" class="form-control form-input" placeholder="Search City...">
+                    <button type="button" class="btn btn-advance-search" id="advanced-search"
+                            data-url="{% url 'weather_report:advanced-search' %}">
+                        Advanced
+                    </button>
                 </div>
             </form>
         </div>
@@ -25,33 +30,37 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title"><a
-                                href="{% url 'weather_report:weather-detail' city='harbin' %}">Harbin</a></h5>
+                        <div class="card-title">
+                            <form method='post' action="{% url 'weather_report:weather-detail' %}">
+                                {% csrf_token %}
+                                <input type='submit' name='city' value='Harbin'>
+                            </form>
+                        </div>
                         <table class="table">
                             <tbody>
                             <tr>
                                 <th scope="row">Weather:</th>
-                                <td>{{ harbin_report.weather }}</td>
+                                <td>{{ data.harbin_report.weather }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Temperature:</th>
-                                <td>{{ harbin_report.temp }}<span>&#8451;</span></td>
+                                <td>{{ data.harbin_report.temp }}<span>&#8451;</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Feels like:</th>
-                                <td>{{ harbin_report.feels_like }}<span>&#8451;</span></td>
+                                <td>{{ data.harbin_report.feels_like }}<span>&#8451;</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Wind:</th>
-                                <td>{{ harbin_report.wind }}</td>
+                                <td>{{ data.harbin_report.wind }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Sunrise:</th>
-                                <td>{{ harbin_report.sun_rise_local }}</td>
+                                <td>{{ data.harbin_report.sun_rise_local }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Sunset:</th>
-                                <td>{{ harbin_report.sun_set_local }}</td>
+                                <td>{{ data.harbin_report.sun_set_local }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -64,33 +73,38 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title"><a
-                                href="{% url 'weather_report:weather-detail' city='montreal' %}">Montreal</a></h5>
+                        <div class="card-title">
+                            <form method='post' action="{% url 'weather_report:weather-detail' %}">
+                                {% csrf_token %}
+                                <input type='submit' name='city' value='Montreal'>
+                            </form>
+                        </div>
+
                         <table class="table">
                             <tbody>
                             <tr>
                                 <th scope="row">Weather:</th>
-                                <td>{{ montreal_report.weather }}</td>
+                                <td>{{ data.montreal_report.weather }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Temperature:</th>
-                                <td>{{ montreal_report.temp }}<span>&#8451;</span></td>
+                                <td>{{ data.montreal_report.temp }}<span>&#8451;</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Feels like:</th>
-                                <td>{{ montreal_report.feels_like }}<span>&#8451;</span></td>
+                                <td>{{ data.montreal_report.feels_like }}<span>&#8451;</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Wind:</th>
-                                <td>{{ montreal_report.wind }}</td>
+                                <td>{{ data.montreal_report.wind }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Sunrise:</th>
-                                <td>{{ montreal_report.sun_rise_local }}</td>
+                                <td>{{ data.montreal_report.sun_rise_local }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Sunset:</th>
-                                <td>{{ montreal_report.sun_set_local }}</td>
+                                <td>{{ data.montreal_report.sun_set_local }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -103,33 +117,38 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title"><a
-                                href="{% url 'weather_report:weather-detail' city='san diego' %}">San Diego</a></h5>
+                        <div class="card-title">
+                            <form method='post' action="{% url 'weather_report:weather-detail' %}">
+                                {% csrf_token %}
+                                <input type='submit' name='city' value='San Diego'>
+                            </form>
+                        </div>
+
                         <table class="table">
                             <tbody>
                             <tr>
                                 <th scope="row">Weather:</th>
-                                <td>{{ sandiego_report.weather }}</td>
+                                <td>{{ data.san_report.weather }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Temperature:</th>
-                                <td>{{ sandiego_report.temp }}<span>&#8451;</span></td>
+                                <td>{{ data.san_report.temp }}<span>&#8451;</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Feels like:</th>
-                                <td>{{ sandiego_report.feels_like }}<span>&#8451;</span></td>
+                                <td>{{ data.san_report.feels_like }}<span>&#8451;</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Wind:</th>
-                                <td>{{ sandiego_report.wind }}</td>
+                                <td>{{ data.san_report.wind }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Sunrise:</th>
-                                <td>{{ sandiego_report.sun_rise_local }}</td>
+                                <td>{{ data.san_report.sun_rise_local }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Sunset:</th>
-                                <td>{{ sandiego_report.sun_set_local }}</td>
+                                <td>{{ data.san_report.sun_set_local }}</td>
                             </tr>
                             </tbody>
                         </table>

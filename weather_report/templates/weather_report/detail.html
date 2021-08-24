@@ -19,32 +19,32 @@
     <div class="row g-5">
         <div class="col-sm-6 p-5">
             <h5>{{ report.local_time }}</h5>
-            <h1>{{ city }}, {{ report.country }}</h1>
+            <h1>{{ city }}, {{ current_report.country }}</h1>
             <table class="table">
                 <tbody>
                 <tr>
                     <th scope="row">Weather:</th>
-                    <td>{{ report.weather }}</td>
+                    <td>{{ current_report.weather }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Temperature:</th>
-                    <td>{{ report.temp }}<span>&#8451;</span></td>
+                    <td>{{ current_report.temp }}<span>&#8451;</span></td>
                 </tr>
                 <tr>
                     <th scope="row">Feels like:</th>
-                    <td>{{ report.feels_like }}<span>&#8451;</span></td>
+                    <td>{{ current_report.feels_like }}<span>&#8451;</span></td>
                 </tr>
                 <tr>
                     <th scope="row">Wind:</th>
-                    <td>{{ report.wind }}</td>
+                    <td>{{ current_report.wind }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Sunrise:</th>
-                    <td>{{ report.sun_rise_local }}</td>
+                    <td>{{ current_report.sun_rise_local }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Sunset:</th>
-                    <td>{{ report.sun_set_local }}</td>
+                    <td>{{ current_report.sun_set_local }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-sm-6">
             <div class="border bg-light">
-                <img class="resize" src="data:image/png;base64,{{ report.chart|safe }}" alt="">
+                <img class="resize" src="data:image/png;base64,{{ trend_report.chart|safe }}" alt="">
             </div>
         </div>
     </div>

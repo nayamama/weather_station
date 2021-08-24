@@ -1,0 +1,12 @@
+{% extends 'modal_base.html' %}
+
+{% block body_action %}{% url 'weather_report:advanced-search' %}{% endblock %}
+
+{% block modal_title %}Advanced Search{% endblock %}
+
+{% block modal_body %}
+    {{ form.as_p }}
+{% endblock %}
+
+
+
