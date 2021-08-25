@@ -17,9 +17,10 @@
                 {% csrf_token %}
                 <div class="form">
                     <i class="fa fa-search"></i>
+                    <input name="country" value="" type="hidden">
                     <input type="text" name="city" class="form-control form-input" placeholder="Search City...">
                     <button type="button" class="btn btn-advance-search" id="advanced-search"
-                            data-url="{% url 'weather_report:advanced-search' %}">
+                            data-url="{% url 'weather_report:weather-detail' %}">
                         Advanced
                     </button>
                 </div>
@@ -33,6 +34,7 @@
                         <div class="card-title">
                             <form method='post' action="{% url 'weather_report:weather-detail' %}">
                                 {% csrf_token %}
+                                <input name="country" value="" type="hidden">
                                 <input type='submit' name='city' value='Harbin'>
                             </form>
                         </div>
@@ -76,6 +78,7 @@
                         <div class="card-title">
                             <form method='post' action="{% url 'weather_report:weather-detail' %}">
                                 {% csrf_token %}
+                                <input name="country" value="" type="hidden">
                                 <input type='submit' name='city' value='Montreal'>
                             </form>
                         </div>
@@ -120,6 +123,7 @@
                         <div class="card-title">
                             <form method='post' action="{% url 'weather_report:weather-detail' %}">
                                 {% csrf_token %}
+                                <input name="country" value="" type="hidden">
                                 <input type='submit' name='city' value='San Diego'>
                             </form>
                         </div>

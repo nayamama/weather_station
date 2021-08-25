@@ -2,16 +2,8 @@ from requests import request
 from datetime import datetime
 import matplotlib.pyplot as plt
 import pytz
-import environ
 from io import BytesIO
 import base64
-
-from .google_api import get_map_related_data
-
-env = environ.Env()
-environ.Env.read_env(env_file='../weather_center/.env')
-
-API_KEY = env('WEATHER_API_KEY')
 
 # create the time zones
 tz_china = pytz.timezone('Asia/Shanghai')

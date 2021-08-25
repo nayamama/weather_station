@@ -25,7 +25,7 @@ class GoogleMapsClient:
             self.extract_lat_lng()
 
     @staticmethod
-    def response(self, endpoint, params):
+    def response(endpoint, params):
         """Get a response based on a constructed endpoint url."""
         url_params = urlencode(params)
         url = "{}?{}".format(endpoint, url_params)
@@ -83,22 +83,12 @@ class GoogleMapsClient:
 
         return self.response(endpoint, params)
 
+    def get_top_5_places(self):
+        """Retrieve the detailed information of top 5 places based on rating"""
+        restaurant_list = self.nearby_search()
+        top5_restaurant = sorted(restaurant_list['results'], reverse=True,
+                                 key=lambda k: ('rating' not in k, k.get('rating')))[:5]
+        place_id_list = [r['place_id'] for r in top5_restaurant]
+        stores = [self.detail_place_info(id)['result'] for id in place_id_list]
 
-def get_map_related_data(address_or_zip, api_key=API_KEY):
-    """retrieve geocode and nearby restaurant information based on address or ZIP"""
-    client = GoogleMapsClient(api_key, address_or_zip)
-    coordinator = (client.lat, client.lng)
-    restaurant_list = client.nearby_search()
-
-    # get the restaurant id from restaurant list
-    place_id_list = list()
-    top5_restaurant = sorted(restaurant_list['results'], key=lambda k: -k['rating'])[:5]
-    for _ in top5_restaurant:
-        place_id_list.append(restaurant_list['results'][0]['place_id'])
-
-    # create a restaurant information list
-    stores = list()
-    for id in place_id_list:
-        stores.append(client.detail_place_info(id)['result'])
-
-    return coordinator, stores
+        return stores
