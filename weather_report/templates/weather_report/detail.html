@@ -18,44 +18,53 @@
 {% block content %}
     <div class="row g-5">
         <div class="col-sm-6 p-5">
-            <h5>{{ current_report.local_time }}</h5>
-            <h1>{{ city }}, {{ current_report.country }}</h1>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th scope="row">Weather:</th>
-                    <td>{{ current_report.weather }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Temperature:</th>
-                    <td>{{ current_report.temp }}<span>&#8451;</span></td>
-                </tr>
-                <tr>
-                    <th scope="row">Feels like:</th>
-                    <td>{{ current_report.feels_like }}<span>&#8451;</span></td>
-                </tr>
-                <tr>
-                    <th scope="row">Wind:</th>
-                    <td>{{ current_report.wind }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Sunrise:</th>
-                    <td>{{ current_report.sun_rise_local }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Sunset:</th>
-                    <td>{{ current_report.sun_set_local }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-6">
-            <div class="p-3 border bg-light">Custom column padding</div>
-        </div>
-        <div class="col-sm-6">
-            <div class="border bg-light">
-                <img class="resize" src="data:image/png;base64,{{ trend_report.chart|safe }}" alt="">
+            <div class="row">
+                <h5>{{ current_report.local_time }}</h5>
+                <h1>{{ city }}, {{ current_report.country }}</h1>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Weather:</th>
+                        <td>{{ current_report.weather }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Temperature:</th>
+                        <td>{{ current_report.temp }}<span>&#8451;</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Feels like:</th>
+                        <td>{{ current_report.feels_like }}<span>&#8451;</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Wind:</th>
+                        <td>{{ current_report.wind }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sunrise:</th>
+                        <td>{{ current_report.sun_rise_local }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sunset:</th>
+                        <td>{{ current_report.sun_set_local }}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+            <div class="row">
+                <div class="border bg-light">
+                    <img class="resize" src="data:image/png;base64,{{ trend_report.chart|safe }}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="row p-3 border bg-ligh">
+                Custom column padding
+            </div>
+            <div class="row p-3 border bg-ligh">
+                Restaurant List
+            </div>
+
         </div>
     </div>
 {% endblock %}
