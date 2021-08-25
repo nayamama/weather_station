@@ -57,12 +57,43 @@
             </div>
 
         </div>
+
         <div class="col-sm-6">
             <div class="row p-3 border bg-ligh">
-                Custom column padding
+                <iframe
+                        title="embed map"
+                        width="100%"
+                        height="450"
+                        style="border:0"
+                        src={{ embed_map_query_str }}
+                                allowfullscreen>
+                </iframe>
             </div>
+
             <div class="row p-3 border bg-ligh">
-                Restaurant List
+                <h5>Top Chinese Restaurants</h5>
+                {% if restaurants %}
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone#</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for r in restaurants %}
+                            <tr>
+                                <td>{{ r.name }}</td>
+                                <td>{{ r.formatted_address }}</td>
+                                <td>{{ r.formatted_phone_number }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <h6>Sorry, there is no Chinese restaurants around this area.</h6>
+                {% endif %}
             </div>
 
         </div>

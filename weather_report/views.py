@@ -45,18 +45,22 @@ def detail(request):
         trend_query_str = 'http://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&units=metric&appid={}'.format(
             client.lat, client.lng, API_KEY)
 
+        # construct query string for embed Google Map
+        embed_map_query_str = "https://www.google.com/maps/embed/v1/place?key={}&q={}".format(GOOGLE_API_KEY, location)
+
         # retrieve single point report and trend chart
         current_report = get_current_city_weather_data(current_query_str)
         trend_report = get_five_days_forecast(trend_query_str)
         if current_report['cod'] == 404:
             raise Http404()
 
-        print(client.get_top_5_places())
+        restaurants = client.get_top_5_places()
 
         city = city.title()
 
         return render(request, 'weather_report/detail.html',
-                      {'current_report': current_report, 'trend_report': trend_report, 'city': city})
+                      {'current_report': current_report, 'trend_report': trend_report, 'city': city,
+                       'embed_map_query_str': embed_map_query_str, 'restaurants': restaurants})
     else:
         form = AdvancedSearchForm()
     return render(request, 'weather_report/advanced_search_modal.html', {'form': form})
