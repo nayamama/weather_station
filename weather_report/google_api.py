@@ -1,11 +1,5 @@
 from requests import request
 from urllib.parse import urlencode
-import environ
-
-env = environ.Env()
-environ.Env.read_env(env_file='../weather_center/.env')
-
-API_KEY = env('GOOGLE_API_KEY')
 
 
 class GoogleMapsClient:

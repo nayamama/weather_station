@@ -20,14 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-fo6xlx=80wstoj49zpunav+-#d6f@+951q5t41o=p3^))rb8ez'
-
 # initialize environment variables
 env = environ.Env()
 environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
+WEATHER_API_KEY = env('WEATHER_API_KEY')
+GOOGLE_API_KEY = env('GOOGLE_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

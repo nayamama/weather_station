@@ -1,27 +1,17 @@
 from django.shortcuts import render
-import pytz
 from django.http import Http404
-import environ
+from django.conf import settings
 
 from .weather import get_current_city_weather_data, get_five_days_forecast
 from .forms import AdvancedSearchForm
 from .google_api import GoogleMapsClient
 
-env = environ.Env()
-environ.Env.read_env(env_file='../weather_center/.env')
-
-API_KEY = env('WEATHER_API_KEY')
-GOOGLE_API_KEY = env('GOOGLE_API_KEY')
-
-tz_china = pytz.timezone('Asia/Shanghai')
-tz_east = pytz.timezone('America/Toronto')
-tz_west = pytz.timezone('America/Los_Angeles')
-
 
 def index(request):
     data = {}
     for city in ['harbin', 'montreal', 'san diego']:
-        query_str = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={}'.format(city, API_KEY)
+        query_str = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={}'.format(city,
+                                                                                                       settings.WEATHER_API_KEY)
         data[city.split()[0] + '_report'] = get_current_city_weather_data(query_str)
     return render(request,
                   'weather_report/index.html',
@@ -37,16 +27,17 @@ def detail(request):
             location = ','.join([city, country_code])
         else:
             location = city
-        client = GoogleMapsClient(api_key=GOOGLE_API_KEY, address_or_zip=location)
+        client = GoogleMapsClient(api_key=settings.GOOGLE_API_KEY, address_or_zip=location)
 
         # construct two query strings for weather API
         current_query_str = 'http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&units=metric&appid={}'.format(
-            client.lat, client.lng, API_KEY)
+            client.lat, client.lng, settings.WEATHER_API_KEY)
         trend_query_str = 'http://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&units=metric&appid={}'.format(
-            client.lat, client.lng, API_KEY)
+            client.lat, client.lng, settings.WEATHER_API_KEY)
 
         # construct query string for embed Google Map
-        embed_map_query_str = "https://www.google.com/maps/embed/v1/place?key={}&q={}".format(GOOGLE_API_KEY, location)
+        embed_map_query_str = "https://www.google.com/maps/embed/v1/place?key={}&q={}".format(settings.GOOGLE_API_KEY,
+                                                                                              location)
 
         # retrieve single point report and trend chart
         current_report = get_current_city_weather_data(current_query_str)
