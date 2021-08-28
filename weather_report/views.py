@@ -21,9 +21,9 @@ def index(request):
 def detail(request):
     if request.method == "POST":
         location = None
-        city = request.POST['city']
-        if request.POST['country']:
-            country_code = request.POST['country']
+        city = request.POST.get('city', None)
+        country_code = request.POST.get('country', None)
+        if country_code is not None:
             location = ','.join([city, country_code])
         else:
             location = city
